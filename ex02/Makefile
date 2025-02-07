@@ -6,7 +6,7 @@
 #    By: tatahere <tatahere@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/31 09:52:48 by tatahere          #+#    #+#              #
-#    Updated: 2025/02/04 12:02:55 by tatahere         ###   ########.fr        #
+#    Updated: 2025/02/06 18:18:06 by tatahere         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,10 @@ CFLAGS	+=	$(CINC)
 CDEBUG	=	-g -fsanitize=address
 CFLAGS	+=	$(CDEBUG)
 
-NAME	=	phone_book
+NAME	=	test
 
-OBJ		:=	main.o		\
-			Contact.o	\
-			PhoneBook.o	\
+OBJ		:=	tests.o		\
+			Account.o	\
 
 OBJ		:= $(addprefix $(BIN_DIR), $(OBJ))
 
