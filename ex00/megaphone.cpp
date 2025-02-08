@@ -6,7 +6,7 @@
 /*   By: tatahere <tatahere@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 09:58:50 by tatahere          #+#    #+#             */
-/*   Updated: 2025/02/03 17:42:44 by tatahere         ###   ########.fr       */
+/*   Updated: 2025/02/08 12:42:39 by tatahere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ void	print_arg_uppercase(char *arg)
 	i = 0;
 	while (arg[i])
 	{
-		std::cout << std::toupper(arg[i]);
+		std::cout << (char)std::toupper(arg[i]);
 		i++;
 	}
+	std::cout << " " ;
 }
 
 
