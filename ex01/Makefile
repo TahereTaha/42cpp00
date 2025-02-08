@@ -6,7 +6,7 @@
 #    By: tatahere <tatahere@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/31 09:52:48 by tatahere          #+#    #+#              #
-#    Updated: 2025/02/08 13:06:53 by tatahere         ###   ########.fr        #
+#    Updated: 2025/02/08 13:19:39 by tatahere         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ CXXFLAGS	+=	$(CINC)
 CDEBUG		:=	-g
 CXXFLAGS	+=	$(CDEBUG)
 
-NAME	=	megaphone
+NAME	=	phone_book
 
 OBJ		:=	main.o		\
 			Contact.o	\

@@ -6,7 +6,7 @@
 /*   By: tatahere <tatahere@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:12:25 by tatahere          #+#    #+#             */
-/*   Updated: 2025/02/04 12:04:20 by tatahere         ###   ########.fr       */
+/*   Updated: 2025/02/08 14:13:47 by tatahere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,24 @@ void	print_contact(Contact contact)
 	std::cout << "darkest_secret: " << contact.get_darkest_secret() << std::endl;
 }
 
-void	print_string_in_box(std::string str)
+std::string	expand_tabs(std::string str)
 {
-	std::string sub;
-	if (str.length() <= 10)
-		sub = str.substr(0, 10);
-	else
-		sub = str.substr(0, 9) + ".";
-	std::cout << sub;
+	std::string	return_string = "";
+
+	for (int i = 0; str[i]; i++)
+	{
+		if (str[i] == '\t')
+			return_string += "    ";
+		else
+			return_string += str[i];
+	}
+	return (return_string);
+}
+
+void	print_string_in_box(std::string str1)
+{
+	std::string	str;
+	str = expand_tabs(str1);
 	if (str.length() <= 10)
 	{
 		size_t	i;
@@ -84,6 +94,12 @@ void	print_string_in_box(std::string str)
 			i--;
 		}
 	}
+	std::string sub;
+	if (str.length() <= 10)
+		sub = str.substr(0, 10);
+	else
+		sub = str.substr(0, 9) + ".";
+	std::cout << sub;
 }
 
 void	print_contact_short(Contact contact, size_t	i)
@@ -100,16 +116,26 @@ void	print_contact_short(Contact contact, size_t	i)
 	std::cout << std::endl;
 }
 
+void	print_table_colums(void)
+{
+	std::cout << "|";
+	print_string_in_box("index");
+	std::cout << "|";
+	print_string_in_box("first name");
+	std::cout << "|";
+	print_string_in_box("last name");
+	std::cout << "|";
+	print_string_in_box("nickname");
+	std::cout << "|";
+	std::cout << std::endl;
+}
+
 void	print_phone_book(PhoneBook phone_book)
 {
 	size_t	i;
 
-	if (phone_book.get_contact(0).initialized == 0)
-	{
-		std::cout << "this phone book is empty" << std::endl;
-		return ;
-	}
 	std::cout << "\nthis is the phonebook\n" << std::endl;
+	print_table_colums();
 	i = 0;
 	while (i < CONTACT_ARRAY_SIZE && phone_book.get_contact(i).initialized)
 	{
@@ -148,6 +174,11 @@ void	search_contact(PhoneBook phone_book)
 	std::string input;
 	size_t		i;
 
+	if (phone_book.get_contact(0).initialized == 0)
+	{
+		std::cout << "this phone book is empty" << std::endl;
+		return ;
+	}
 	print_phone_book(phone_book);
 	std::cout << "plese select a index to view the contact" << std::endl;
 search_start:
@@ -170,23 +201,36 @@ search_start:
 	print_contact(phone_book.get_contact(i));
 }
 
+std::string	get_input(std::string prompt)
+{
+	std::string	input;
+begin_get_input:
+	std::cout << prompt << std::endl;
+
+	if (!std::getline(std::cin, input))
+	{
+		std::cout << "error" << std::endl;
+		exit(42);
+	}
+	if (input.length() == 0)
+	{
+		std::cout << "empty entry try again" << std::endl;
+		goto begin_get_input;
+	}
+	return (input);
+}
+
 Contact	make_contact(void)
 {
 	std::string input;
 	Contact		contact;
 
 	contact.initialized = 1;
-	std::cout << "First Name :" << std::endl;
-	if (!std::getline(std::cin, input))
-		std::exit(42);
+	get_input("First Name :");
 	contact.set_first_name(input);
-	std::cout << "Last Name :" << std::endl;
-	if (!std::getline(std::cin, input))
-		std::exit(42);
+	get_input("Last Name :");
 	contact.set_last_name(input);
-	std::cout << "NicName :" << std::endl;
-	if (!std::getline(std::cin, input))
-		std::exit(42);
+	get_input("Nickname :");
 	contact.set_nicname(input);
 	
 	std::cout << "Number :";
@@ -198,9 +242,7 @@ Contact	make_contact(void)
 	}
 	while (!is_num(input));
 	contact.set_phone_number(input);
-	std::cout << "Darkest Secret :" << std::endl;
-	if (!std::getline(std::cin, input))
-		std::exit(42);
+	get_input("Darkest Secret :");
 	contact.set_darkest_secret(input);
 
 	return (contact);
