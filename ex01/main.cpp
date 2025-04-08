@@ -6,7 +6,7 @@
 /*   By: tatahere <tatahere@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:12:25 by tatahere          #+#    #+#             */
-/*   Updated: 2025/02/08 14:13:47 by tatahere         ###   ########.fr       */
+/*   Updated: 2025/04/08 12:57:36 by tatahere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,11 +226,11 @@ Contact	make_contact(void)
 	Contact		contact;
 
 	contact.initialized = 1;
-	get_input("First Name :");
+	input = get_input("First Name :");
 	contact.set_first_name(input);
-	get_input("Last Name :");
+	input = get_input("Last Name :");
 	contact.set_last_name(input);
-	get_input("Nickname :");
+	input = get_input("Nickname :");
 	contact.set_nicname(input);
 	
 	std::cout << "Number :";
@@ -242,7 +242,7 @@ Contact	make_contact(void)
 	}
 	while (!is_num(input));
 	contact.set_phone_number(input);
-	get_input("Darkest Secret :");
+	input = get_input("Darkest Secret :");
 	contact.set_darkest_secret(input);
 
 	return (contact);
